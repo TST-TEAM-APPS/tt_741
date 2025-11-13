@@ -12,7 +12,7 @@
 
 /* Begin PBXFileReference section */
 		CEDDD2772EC62A930079FB3B /* codemagic.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
-		CEF67CC02EA679330019EB46 /* tt_741.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = tt_741.app; path = Mind_Hive_Logic_Marathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEF67CC02EA679330019EB46 /* Mind_Hive_Logic_Marathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mind_Hive_Logic_Marathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -46,7 +46,7 @@
 		CEF67CC12EA679330019EB46 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEF67CC02EA679330019EB46 /* tt_741.app */,
+				CEF67CC02EA679330019EB46 /* Mind_Hive_Logic_Marathon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,7 +73,7 @@
 			packageProductDependencies = (
 			);
 			productName = tt_741;
-			productReference = CEF67CC02EA679330019EB46 /* tt_741.app */;
+			productReference = CEF67CC02EA679330019EB46 /* Mind_Hive_Logic_Marathon.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -293,6 +293,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,6 +315,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
