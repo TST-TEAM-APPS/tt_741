@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CEDDD2782EC62A970079FB3B /* codemagic.yaml in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD2772EC62A930079FB3B /* codemagic.yaml */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		CEDDD2772EC62A930079FB3B /* codemagic.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
 		CEF67CC02EA679330019EB46 /* tt_741.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = tt_741.app; path = Mind_Hive_Logic_Marathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -32,6 +37,7 @@
 		CEF67CB72EA679330019EB46 = {
 			isa = PBXGroup;
 			children = (
+				CEDDD2772EC62A930079FB3B /* codemagic.yaml */,
 				CEF67CC22EA679330019EB46 /* tt_741 */,
 				CEF67CC12EA679330019EB46 /* Products */,
 			);
@@ -109,6 +115,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDDD2782EC62A970079FB3B /* codemagic.yaml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
