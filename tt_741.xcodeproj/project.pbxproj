@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE24D6372ED752AB00AA66FC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE24D6362ED752AB00AA66FC /* FirebaseAnalytics */; };
+		CE24D6392ED752AB00AA66FC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = CE24D6382ED752AB00AA66FC /* FirebaseCore */; };
+		CE24D63B2ED752AB00AA66FC /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = CE24D63A2ED752AB00AA66FC /* FirebaseMessaging */; };
 		CEDDD2782EC62A970079FB3B /* codemagic.yaml in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD2772EC62A930079FB3B /* codemagic.yaml */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +31,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE24D63B2ED752AB00AA66FC /* FirebaseMessaging in Frameworks */,
+				CE24D6392ED752AB00AA66FC /* FirebaseCore in Frameworks */,
+				CE24D6372ED752AB00AA66FC /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +77,9 @@
 			);
 			name = tt_741;
 			packageProductDependencies = (
+				CE24D6362ED752AB00AA66FC /* FirebaseAnalytics */,
+				CE24D6382ED752AB00AA66FC /* FirebaseCore */,
+				CE24D63A2ED752AB00AA66FC /* FirebaseMessaging */,
 			);
 			productName = tt_741;
 			productReference = CEF67CC02EA679330019EB46 /* Mind_Hive_Logic_Marathon.app */;
@@ -100,6 +109,9 @@
 			);
 			mainGroup = CEF67CB72EA679330019EB46;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CE24D6352ED752AB00AA66FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CEF67CC12EA679330019EB46 /* Products */;
 			projectDirPath = "";
@@ -298,6 +310,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Muratev.MindHiveLogicMarathon;
 				PRODUCT_NAME = Mind_Hive_Logic_Marathon;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -320,6 +333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Muratev.MindHiveLogicMarathon;
 				PRODUCT_NAME = Mind_Hive_Logic_Marathon;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -349,6 +363,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE24D6352ED752AB00AA66FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE24D6362ED752AB00AA66FC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE24D6352ED752AB00AA66FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CE24D6382ED752AB00AA66FC /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE24D6352ED752AB00AA66FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		CE24D63A2ED752AB00AA66FC /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE24D6352ED752AB00AA66FC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEF67CB82EA679330019EB46 /* Project object */;
 }

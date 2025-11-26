@@ -5,6 +5,9 @@ struct PuzzleView: View {
     @Environment(\.dismiss) var dismiss
     @State private var animateCards = false
     @State private var showExplanation = false
+    @State private var showHint = false
+    @State private var hintText = ""
+    @AppStorage("showHints") private var showHintsEnabled = true
     
     var body: some View {
         ZStack {
@@ -12,20 +15,27 @@ struct PuzzleView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Header
-                PuzzleHeaderView(onBack: { dismiss() })
-                    .padding(.horizontal, 24)
-                    .padding(.top, 20)
+                PuzzleHeaderView(
+                    onBack: { dismiss() },
+                    onHint: {
+                        if showHintsEnabled {
+                            generateHint()
+                            showHint = true
+                            environment.userProgress.useHint()
+                            environment.userProgress.save()
+                        }
+                    }
+                )
+                .padding(.horizontal, 24)
+                .padding(.top, 20)
                 
                 if let puzzle = environment.currentPuzzle {
                     ScrollView {
                         VStack(spacing: 24) {
-                            // Puzzle Info
                             PuzzleInfoView(puzzle: puzzle)
                                 .padding(.horizontal, 24)
                                 .padding(.top, 20)
                             
-                            // Character Cards
                             VStack(spacing: 16) {
                                 ForEach(Array(puzzle.characters.enumerated()), id: \.element.id) { index, character in
                                     if let statement = puzzle.statements.first(where: { $0.characterId == character.id }) {
@@ -48,7 +58,6 @@ struct PuzzleView: View {
                             }
                             .padding(.horizontal, 24)
                             
-                            // Submit Button
                             if !environment.selectedAnswers.isEmpty && !environment.showResult {
                                 Button(action: {
                                     withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
@@ -114,6 +123,11 @@ struct PuzzleView: View {
                 dismiss()
             })
         }
+        .alert("Hint", isPresented: $showHint) {
+            Button("Got it", role: .cancel) { }
+        } message: {
+            Text(hintText)
+        }
     }
     
     private func selectAnswer(for characterId: String, isTruth: Bool) {
@@ -126,11 +140,32 @@ struct PuzzleView: View {
             environment.selectedAnswers[characterId] = isTruth
         }
     }
+    
+    private func generateHint() {
+        guard let puzzle = environment.currentPuzzle else { return }
+        
+        let hints = [
+            "Start by analyzing statements that reference other characters",
+            "Look for contradictions between statements",
+            "If someone claims another person lies, consider both possibilities",
+            "Truth-tellers always make accurate statements about others",
+            "Liars always make false statements about others",
+            "Try to find a character whose truth value you can determine first"
+        ]
+        
+        if puzzle.characters.count <= 3 {
+            hintText = "With fewer characters, try testing each possible combination systematically."
+        } else {
+            hintText = hints.randomElement() ?? hints[0]
+        }
+    }
 }
 
 struct PuzzleHeaderView: View {
     @EnvironmentObject var environment: GameEnvironment
     let onBack: () -> Void
+    let onHint: () -> Void
+    @AppStorage("showHints") private var showHintsEnabled = true
     
     var body: some View {
         HStack {
@@ -162,7 +197,14 @@ struct PuzzleHeaderView: View {
             
             Spacer()
             
-            Color.clear.frame(width: 24, height: 24)
+            if showHintsEnabled {
+                Button(action: onHint) {
+                    CustomIconView(name: "lightbulb", size: 24)
+                        .foregroundColor(Palette.warning)
+                }
+            } else {
+                Color.clear.frame(width: 24, height: 24)
+            }
         }
     }
 }

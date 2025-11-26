@@ -1,14 +1,15 @@
 import SwiftUI
+import FirebaseCore
 
 @main
 struct ParadoxApp: App {
-    @UIApplicationDelegateAdaptor(ObscuraDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(NightfallDelegate.self) var appDelegate
     @StateObject private var gameEnvironment = GameEnvironment()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     
     var body: some Scene {
         WindowGroup {
-            ObscuraRootView {
+            NightfallRootView {
                 Group {
                     if hasCompletedOnboarding {
                         MenuView()

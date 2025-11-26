@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct SettingsView: View {
@@ -8,6 +7,7 @@ struct SettingsView: View {
     @AppStorage("hapticsEnabled") private var hapticsEnabled = true
     @AppStorage("showHints") private var showHints = true
     @State private var showResetAlert = false
+    @State private var showMailComposer = false
     
     var body: some View {
         NavigationStack {
@@ -17,7 +17,6 @@ struct SettingsView: View {
                 
                 ScrollView {
                     VStack(spacing: 24) {
-                        // App Info
                         VStack(spacing: 12) {
                             ParadoxLogoView()
                             
@@ -26,14 +25,13 @@ struct SettingsView: View {
                                 .foregroundColor(Palette.text)
                                 .tracking(2)
                             
-                            Text("Version 1.0.0")
+                            Text("Version \(NightfallKit.appVersion)")
                                 .font(Typography.caption)
                                 .foregroundColor(Palette.textSecondary)
                         }
                         .padding(.top, 20)
                         .padding(.bottom, 20)
                         
-                        // Settings Sections
                         VStack(spacing: 16) {
                             SettingsSection(title: "Preferences") {
                                 SettingsToggleRow(
@@ -70,6 +68,16 @@ struct SettingsView: View {
                                     title: "Best Marathon",
                                     value: "\(environment.userProgress.bestMarathonScore)"
                                 )
+                                
+                                SettingsStatRow(
+                                    title: "Daily Streak",
+                                    value: "\(environment.dailyStreak) days"
+                                )
+                                
+                                SettingsStatRow(
+                                    title: "Level",
+                                    value: "\(environment.userProgress.level)"
+                                )
                             }
                             
                             SettingsSection(title: "Data") {
@@ -95,23 +103,30 @@ struct SettingsView: View {
                             SettingsSection(title: "About") {
                                 SettingsLinkRow(
                                     icon: "info",
-                                    title: "How to Play"
+                                    title: "Privacy Policy"
                                 ) {
-                                    // Action
+                                    NightfallKit.openPrivacy()
+                                }
+                                
+                                SettingsLinkRow(
+                                    icon: "book",
+                                    title: "Terms of Use"
+                                ) {
+                                    NightfallKit.openTerms()
                                 }
                                 
                                 SettingsLinkRow(
                                     icon: "heart",
                                     title: "Rate App"
                                 ) {
-                                    // Action
+                                    NightfallKit.rateApp()
                                 }
                                 
                                 SettingsLinkRow(
                                     icon: "envelope",
-                                    title: "Contact Support"
+                                    title: "Contact Us"
                                 ) {
-                                    // Action
+                                    showMailComposer = true
                                 }
                             }
                         }
@@ -135,9 +150,13 @@ struct SettingsView: View {
                 Button("Reset", role: .destructive) {
                     environment.userProgress = UserProgress()
                     environment.userProgress.save()
+                    environment.dailyStreak = 0
                 }
             } message: {
                 Text("Are you sure you want to reset all your progress? This action cannot be undone.")
+            }
+            .sheet(isPresented: $showMailComposer) {
+                NightfallMailComposer()
             }
         }
     }
@@ -250,5 +269,6 @@ struct SettingsLinkRow: View {
                     .fill(Palette.cardBackground)
             )
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
